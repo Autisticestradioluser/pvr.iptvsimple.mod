@@ -51,6 +51,8 @@ namespace iptvsimple
 
     bool m_onStartupOnly = true;
 
+    int m_fastReconnectAttempts = FAST_RECONNECT_ATTEMPTS;
+
     std::shared_ptr<iptvsimple::InstanceSettings> m_settings;
   };
 } // namespace iptvsimple

@@ -242,7 +242,18 @@ PVR_ERROR IptvSimple::GetChannelStreamProperties(const kodi::addon::PVRChannel& 
     streamURL = StreamUtils::WebStreamExtractor(streamURL, m_currentChannel);
     StreamUtils::SetAllStreamProperties(properties, m_currentChannel, streamURL, catchupUrl.empty(), catchupProperties, m_settings);
 
-    Logger::Log(LogLevel::LEVEL_INFO, "%s - Live %s URL: %s", __FUNCTION__, catchupUrl.empty() ? "Stream" : "Catchup", WebUtils::RedactUrl(streamURL).c_str());
+    // Extract the effective stream URL (with reconnect options applied) from properties
+    // so the INFO log reflects what Kodi actually receives, not the pre-modification URL.
+    std::string effectiveStreamURL = streamURL;
+    for (const auto& prop : properties)
+    {
+      if (prop.GetName() == PVR_STREAM_PROPERTY_STREAMURL)
+      {
+        effectiveStreamURL = prop.GetValue();
+        break;
+      }
+    }
+    Logger::Log(LogLevel::LEVEL_INFO, "%s - Live %s URL: %s", __FUNCTION__, catchupUrl.empty() ? "Stream" : "Catchup", WebUtils::RedactUrl(effectiveStreamURL).c_str());
 
     return PVR_ERROR_NO_ERROR;
   }

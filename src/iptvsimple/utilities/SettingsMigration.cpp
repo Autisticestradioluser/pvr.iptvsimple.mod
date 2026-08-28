@@ -65,7 +65,10 @@ const std::vector<std::pair<const char*, int>> intMap = {{"m3uPathType", 1},
                                                          {"catchupOverrideMode", 0},
                                                          {"catchupWatchEpgBeginBufferMins", 5},
                                                          {"catchupWatchEpgEndBufferMins", 15},
-                                                         {"udpxyPort", 4022}};
+                                                         {"udpxyPort", 4022},
+                                                         {"reconnectDelayMax", 30},
+                                                         {"reconnectReadTimeout", 10},
+                                                         {"m3uFastReconnectAttempts", 5}};
 
 const std::vector<std::pair<const char*, float>> floatMap = {{"epgTimeShift", 0.0f},
                                                              {"catchupCorrection", 0.0f}};
@@ -95,7 +98,9 @@ const std::vector<std::pair<const char*, bool>> boolMap = {{"m3uCache", true},
                                                            {"catchupOnlyOnFinishedProgrammes", false},
                                                            {"transformMulticastStreamUrls", false},
                                                            {"useFFmpegReconnect", true},
-                                                           {"useInputstreamAdaptiveforHls", false}};
+                                                           {"useInputstreamAdaptiveforHls", false},
+                                                           {"reconnectOnNetworkError", true},
+                                                           {"reconnectOnHttpError", true}};
 
 } // unnamed namespace
 

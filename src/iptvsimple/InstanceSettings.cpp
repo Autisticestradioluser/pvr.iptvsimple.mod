@@ -158,6 +158,15 @@ void InstanceSettings::ReadSettings()
   m_instance.CheckInstanceSettingString("defaultMimeType", m_defaultMimeType);
   m_instance.CheckInstanceSettingInt("connectionchecktimeout", m_connectioncCheckTimeoutSecs);
   m_instance.CheckInstanceSettingInt("connectioncheckinterval", m_connectioncCheckIntervalSecs);
+
+  // FFmpeg reconnect options
+  m_instance.CheckInstanceSettingInt("reconnectDelayMax", m_reconnectDelayMax);
+  m_instance.CheckInstanceSettingBoolean("reconnectOnNetworkError", m_reconnectOnNetworkError);
+  m_instance.CheckInstanceSettingBoolean("reconnectOnHttpError", m_reconnectOnHttpError);
+  m_instance.CheckInstanceSettingInt("reconnectReadTimeout", m_reconnectReadTimeout);
+
+  // M3U fast reconnect attempts
+  m_instance.CheckInstanceSettingInt("m3uFastReconnectAttempts", m_m3uFastReconnectAttempts);
 }
 
 void InstanceSettings::ReloadAddonInstanceSettings()
@@ -342,6 +351,20 @@ ADDON_STATUS InstanceSettings::SetSetting(const std::string& settingName, const 
     return SetStringSetting<ADDON_STATUS>(settingName, settingValue, m_defaultInputstream, ADDON_STATUS_OK, ADDON_STATUS_OK);
   if (settingName == "defaultMimeType")
     return SetStringSetting<ADDON_STATUS>(settingName, settingValue, m_defaultMimeType, ADDON_STATUS_OK, ADDON_STATUS_OK);
+
+  // FFmpeg reconnect options
+  else if (settingName == "reconnectDelayMax")
+    return SetSetting<int, ADDON_STATUS>(settingName, settingValue, m_reconnectDelayMax, ADDON_STATUS_OK, ADDON_STATUS_OK);
+  else if (settingName == "reconnectOnNetworkError")
+    return SetSetting<bool, ADDON_STATUS>(settingName, settingValue, m_reconnectOnNetworkError, ADDON_STATUS_OK, ADDON_STATUS_OK);
+  else if (settingName == "reconnectOnHttpError")
+    return SetSetting<bool, ADDON_STATUS>(settingName, settingValue, m_reconnectOnHttpError, ADDON_STATUS_OK, ADDON_STATUS_OK);
+  else if (settingName == "reconnectReadTimeout")
+    return SetSetting<int, ADDON_STATUS>(settingName, settingValue, m_reconnectReadTimeout, ADDON_STATUS_OK, ADDON_STATUS_OK);
+
+  // M3U fast reconnect attempts
+  else if (settingName == "m3uFastReconnectAttempts")
+    return SetSetting<int, ADDON_STATUS>(settingName, settingValue, m_m3uFastReconnectAttempts, ADDON_STATUS_OK, ADDON_STATUS_OK);
 
   return ADDON_STATUS_OK;
 }

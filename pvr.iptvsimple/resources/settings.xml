@@ -392,6 +392,38 @@
           </constraints>
         </setting>
 
+        <!-- Reconnect settings (for migration) -->
+        <setting id="reconnectDelayMax" type="integer">
+          <level>4</level> <!-- hidden -->
+          <default>30</default>
+        </setting>
+        <setting id="reconnectOnNetworkError" type="boolean">
+          <level>4</level> <!-- hidden -->
+          <default>true</default>
+        </setting>
+        <setting id="reconnectOnHttpError" type="boolean">
+          <level>4</level> <!-- hidden -->
+          <default>true</default>
+        </setting>
+        <setting id="reconnectReadTimeout" type="integer">
+          <level>4</level> <!-- hidden -->
+          <default>10</default>
+        </setting>
+        <setting id="m3uFastReconnectAttempts" type="integer">
+          <level>4</level> <!-- hidden -->
+          <default>5</default>
+        </setting>
+
+        <!-- Connection check settings (for migration) -->
+        <setting id="connectioncheckinterval" type="integer">
+          <level>4</level> <!-- hidden -->
+          <default>10</default>
+        </setting>
+        <setting id="connectionchecktimeout" type="integer">
+          <level>4</level> <!-- hidden -->
+          <default>20</default>
+        </setting>
+
       </group>
     </category>
   </section>

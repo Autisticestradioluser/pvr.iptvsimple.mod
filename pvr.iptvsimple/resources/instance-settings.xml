@@ -911,6 +911,74 @@
           <default>false</default>
           <control type="toggle" />
         </setting>
+        <setting id="reconnectDelayMax" type="integer" label="30810" help="30811">
+          <level>3</level>
+          <default>30</default>
+          <constraints>
+            <minimum>1</minimum>
+            <step>1</step>
+            <maximum>300</maximum>
+          </constraints>
+          <control type="spinner" format="integer" />
+        </setting>
+        <setting id="reconnectOnNetworkError" type="boolean" label="30812" help="30813">
+          <level>3</level>
+          <default>true</default>
+          <control type="toggle" />
+        </setting>
+        <setting id="reconnectOnHttpError" type="boolean" label="30814" help="30815">
+          <level>3</level>
+          <default>true</default>
+          <control type="toggle" />
+        </setting>
+        <setting id="reconnectReadTimeout" type="integer" label="30818" help="30819">
+          <level>3</level>
+          <default>10</default>
+          <constraints>
+            <minimum>0</minimum>
+            <step>1</step>
+            <maximum>120</maximum>
+          </constraints>
+          <control type="spinner" format="integer" />
+        </setting>
+      </group>
+      <group id="4" label="30078">
+        <setting id="connectioncheckinterval" type="integer" label="30080" help="30629">
+          <level>1</level>
+          <default>10</default>
+          <constraints>
+            <minimum>1</minimum>
+            <step>1</step>
+            <maximum>60</maximum>
+          </constraints>
+          <control type="slider" format="integer">
+            <popup>true</popup>
+            <formatlabel>14045</formatlabel>
+          </control>
+        </setting>
+        <setting id="connectionchecktimeout" type="integer" label="30079" help="30628">
+          <level>2</level>
+          <default>20</default>
+          <constraints>
+            <minimum>1</minimum>
+            <step>1</step>
+            <maximum>60</maximum>
+          </constraints>
+          <control type="slider" format="integer">
+            <popup>true</popup>
+            <formatlabel>14045</formatlabel>
+          </control>
+        </setting>
+        <setting id="m3uFastReconnectAttempts" type="integer" label="30816" help="30817">
+          <level>3</level>
+          <default>5</default>
+          <constraints>
+            <minimum>1</minimum>
+            <step>1</step>
+            <maximum>20</maximum>
+          </constraints>
+          <control type="spinner" format="integer" />
+        </setting>
       </group>
       <group id="3" label="30071">
         <setting id="defaultUserAgent" type="string" label="30068" help="30686">

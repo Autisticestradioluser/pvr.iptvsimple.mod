@@ -181,6 +181,12 @@ namespace iptvsimple
     int GetConnectioncCheckTimeoutSecs() const { return m_connectioncCheckTimeoutSecs; }
     int GetConnectioncCheckIntervalSecs() const { return m_connectioncCheckIntervalSecs; }
 
+    int GetReconnectDelayMaxSecs() const { return m_reconnectDelayMax; }
+    bool ReconnectOnNetworkError() const { return m_reconnectOnNetworkError; }
+    bool ReconnectOnHttpError() const { return m_reconnectOnHttpError; }
+    int ReconnectReadTimeoutSecs() const { return m_reconnectReadTimeout; }
+    int GetM3uFastReconnectAttempts() const { return m_m3uFastReconnectAttempts; }
+
     const std::string& GetTvgUrl() const { return m_tvgUrl; }
     void SetTvgUrl(const std::string& tvgUrl) { m_tvgUrl = tvgUrl; }
 
@@ -344,6 +350,15 @@ namespace iptvsimple
     std::string m_defaultMimeType;
     int m_connectioncCheckTimeoutSecs = DEFAULT_CONNECTION_CHECK_TIMEOUT_SECS;
     int m_connectioncCheckIntervalSecs = DEFAULT_CONNECTION_CHECK_INTERVAL_SECS;
+
+    // FFmpeg reconnect options
+    int m_reconnectDelayMax = 30;
+    bool m_reconnectOnNetworkError = true;
+    bool m_reconnectOnHttpError = true;
+    int m_reconnectReadTimeout = 10;
+
+    // M3U reconnect attempts
+    int m_m3uFastReconnectAttempts = 5;
 
     std::vector<std::string> m_customTVChannelGroupNameList;
     std::vector<std::string> m_customRadioChannelGroupNameList;

@@ -28,6 +28,8 @@ using namespace kodi::tools;
 ConnectionManager::ConnectionManager(IConnectionListener& connectionListener, std::shared_ptr<iptvsimple::InstanceSettings> settings)
   : m_connectionListener(connectionListener), m_settings(settings), m_suspended(false), m_state(PVR_CONNECTION_STATE_UNKNOWN)
 {
+  if (m_settings)
+    m_fastReconnectAttempts = m_settings->GetM3uFastReconnectAttempts();
 }
 
 ConnectionManager::~ConnectionManager()
@@ -161,7 +163,7 @@ void ConnectionManager::Process()
       SetState(PVR_CONNECTION_STATE_SERVER_UNREACHABLE);
 
       // Retry a few times with a short interval, after that with the default timeout
-      if (++retryAttempt <= FAST_RECONNECT_ATTEMPTS)
+      if (++retryAttempt <= m_fastReconnectAttempts)
         SteppedSleep(fastReconnectIntervalMs);
       else
         SteppedSleep(intervalMs);
